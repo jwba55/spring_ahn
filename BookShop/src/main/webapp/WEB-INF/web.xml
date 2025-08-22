@@ -9,6 +9,19 @@
 		빈을 어디에 등록할 것인가?
 		
 		spring에서는 root-context와 servlet-context 두개만 사용한다.
+		이 두 개가 사실 큰 차이가 없음.
+		
+		멀티 테스킹
+			실질적으로 한번에 여러 작업을 할 수는 없다.
+			cpu가 하나이기 때문에 빠르게 여러 작업을 왔다갔다함.
+			현재 어디를 바라보고 있는야? 무엇이 실행되고 있느냐?
+			
+			Context-Switching
+			
+		처음에는 servlet이 여러개 있었지만 지금은 listener하나에 servlet이 배치되어 있음.
+			WAC
+			Servlet-Context
+				
 	-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -43,6 +56,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<!--
+		스프링의 실체
 		스프링에서는 모든 요청을 처리하도록 설정되어있음.
 		
 		egov의 경우에는 .do로 되어있음.
@@ -59,6 +73,15 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<!-- 
+		스프링은 모든 요청을 DispatcherServlet에게 보낸다.
+			static content도 DispatcherServlet에서 처리하게된다.
+			
+		egov는 .do로 끝나는 요청만 받는다.
+			그 외의 것들은 tomcat이 처리한다.
+				static content들은 tomcat이 처리하게됨.
+			welcome파일이 처리하게 된다.
+	 -->
 
 	<!-- UTF-8 설정 -->
 	<filter>
@@ -73,6 +96,22 @@
 			2. 파라미터가 처리된 객체로 넘겨 받기 때문에 필수적으로 인코딩을 필터에 잡아줌.
 			
 		 -->
+		 <!-- 
+		 	예전에는 annotation을 사용하지 않고 bean등록 하듯이 xml로 만들어서 reference를 잡아서 연결했었음.
+		 		1. spring이 처음 나왔을 때는 xml로 다 처리했었는데 프로젝트의 규모가 커졌을 때 유지보수 성이 떨어짐.
+		 		
+		 		2. annotation + xml으로 작성됨.
+		 			관리하기가 용이함.
+		 		
+		 		3. JavaConfig
+		 			xml을 전부 없애고 자바 코드로만 작성하도록 하는 것임.
+		 			
+		 		4. SpringBoot
+		 			-3.0버전부터 쓸만해짐.
+		 			-현재도 안정적인 기술은 아님.
+		 				작업해놓은 프로젝트가 시간이 지났을 경우 부트 버전이 올라가있으면 버전을 올릴라고 경고 표시뜸.
+		 			-java config라는 중간 단계를 거쳐서 자바 코드로만 개발을 하기위해서 만들어진 것이다.
+		  -->
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
