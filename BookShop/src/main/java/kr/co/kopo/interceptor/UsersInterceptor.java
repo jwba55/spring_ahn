@@ -27,7 +27,7 @@ public class UsersInterceptor extends HandlerInterceptorAdapter {
 			
 		if(users != null) {
 			//로그인한 관리자
-			if(users.getRole()==Users.USERS) {
+			if(users.getRole()==Users.USERS || users.getRole()==Users.ADMIN) {
 				return true;
 			}
 			response.sendRedirect("/");

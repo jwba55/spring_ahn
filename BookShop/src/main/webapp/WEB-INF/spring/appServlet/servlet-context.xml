@@ -48,15 +48,16 @@
 		<interceptors>
 			<interceptor>
 				<mapping path="/admin/**"/>		<!-- 접근 제한할 주소 -->
-				<mapping path="/book/**" />
-				<mapping path="/users/**" />
-				<mapping path="/orders/**"/>
+				<mapping path="/users/list"/>
 				
 				<beans:bean class="kr.co.kopo.interceptor.AdminInterceptor"></beans:bean>	<!-- 어떤걸 실행시킬지 -->
 			</interceptor>
-			<interceptor>		
+			<interceptor>
 				<mapping path="/users/**"/>
 				<mapping path="/orders/**"/>
+				<mapping path="/book/**"/>
+				
+				<exclude-mapping path="/users/list"/>
 				
 				<beans:bean class="kr.co.kopo.interceptor.UsersInterceptor"></beans:bean>	<!-- 어떤걸 실행시킬지 -->
 			</interceptor>

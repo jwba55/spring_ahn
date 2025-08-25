@@ -28,31 +28,10 @@ public class UsersController {
 	UsersService service;
 
 	@GetMapping("/list")
-	String getUsers(Model model, @SessionAttribute("user") Users user) {
-		List<Users> users = service.getUsers();
-		model.addAttribute("users",users);
+	String getUsers(Model model, @SessionAttribute("users") Users user) {
+		List<Users> userList = service.getUsers();
+		model.addAttribute("userList",userList);
 		return path + "list";
-	}
-	
-	@GetMapping("/add")
-	String addUser() {
-		
-		return path + "add";
-	}
-	
-	@PostMapping("/add")
-	String addUser(Users user) {
-		service.addUser(user);
-		
-		return "redirect:list";
-		//redirect란?
-			//request가 왔을때 처리 후 다시 표시할 페이지로 request를 새로 만들어서 리스트 주소로 보내줌.
-			//request가 두번 왔다갔다함.
-		
-		//foward
-			//위에 있는 리스트로 보내면 디비에서 목록을 읽어서 다시 리스트로 보내줌
-			//문제가 생김
-				//실제 주소가 이전 주소에 머물러 있기 때문에 새로고침시 다시 post 되면서 같은 정보가 여러번 등록되는 문제가 생길수있음.
 	}
 	
 	@GetMapping("/update/{id}")
@@ -79,4 +58,5 @@ public class UsersController {
 		return "redirect:../list";
 	}
 	
+	//회원 가입 부분은 users를 거치지 않게 RootController로 이동시킴
 }

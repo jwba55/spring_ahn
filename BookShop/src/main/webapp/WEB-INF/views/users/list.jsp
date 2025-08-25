@@ -36,21 +36,21 @@
 					jstl:
 						 
 				-->
-				<c:if test="${users.size()<1}">
+				<c:if test="${userList.size()<1}">
 					<tr>
 						<td colspan="5">검색된 회원이 없습니다.</td>
 					</tr>
 				</c:if>
 				
-				<c:forEach var="users" items="${users}">
+				<c:forEach var="userList" items="${userList}">
 					<tr>
-						<td>${users.id}</td>
-						<td>${users.password}</td>
-						<td>${users.name}</td>
-						<td>${users.tel}</td>
+						<td>${userList.id}</td>
+						<td>${userList.password}</td>
+						<td>${userList.name}</td>
+						<td>${userList.tel}</td>
 						<td>
-							<a href="update/${users.id}">변경</a>
-							<a href="delete/${users.id}">삭제</a>
+							<a href="update/${userList.id}">변경</a>
+							<a href="delete/${userList.id}">삭제</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -61,7 +61,7 @@
 	</div>
 	
 	<div>
-		<div><a href="add">등록</a></div>
+		<div><a href="../register">등록</a></div>
 		<div><a href="..">이전</a></div>
 	</div>
 

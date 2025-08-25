@@ -88,4 +88,25 @@ public class RootController {
 		return "redirect:/";
 	}
 	
+	//회원가입
+	@GetMapping("/register")
+	String addUser() {
+		
+		return "register";
+	}
+	
+	@PostMapping("/register")
+	String addUser(Users user) {
+		usersService.addUser(user);
+		
+		return "redirect:list";
+		//redirect란?
+			//request가 왔을때 처리 후 다시 표시할 페이지로 request를 새로 만들어서 리스트 주소로 보내줌.
+			//request가 두번 왔다갔다함.
+		
+		//foward
+			//위에 있는 리스트로 보내면 디비에서 목록을 읽어서 다시 리스트로 보내줌
+			//문제가 생김
+				//실제 주소가 이전 주소에 머물러 있기 때문에 새로고침시 다시 post 되면서 같은 정보가 여러번 등록되는 문제가 생길수있음.
+	}
 }

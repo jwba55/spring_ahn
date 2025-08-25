@@ -19,6 +19,9 @@
 			<div>
 				<a href="login">로그인</a>
 			</div>
+			<div>
+				<a href="register">회원가입</a>
+			</div>
 		</div>
 	</c:if>
 	
