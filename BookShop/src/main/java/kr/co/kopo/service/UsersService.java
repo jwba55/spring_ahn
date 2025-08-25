@@ -17,4 +17,6 @@ public interface UsersService {
 
 	Users getUser(String id);
 
+	Boolean login(Users users);
+
 }

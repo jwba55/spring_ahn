@@ -2,6 +2,7 @@ package kr.co.kopo.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,42 @@ public class UsersServiceImpl implements UsersService {
 	public Users getUser(String id) {
 
 		return dao.getUser(id);
+	}
+
+	
+	//DB에서 아이디 패스워드를 확인하게 되면 문제가 생길수 있음.
+	//	이유:
+	//		DB에 대한 직접 접근
+	//			클라이언트가 해킹 당했을 경우 DB의 데이터가 노출될 위험이 있음.
+	//		sql injection:
+	//			SQL을 입력란에 넣어 DB를 공격하는 행위
+	//	mabatis도 $, # 두 가지를 사용하는 방법이 있다.
+	@Override
+	public Boolean login(Users users) {
+		Users getLogin = dao.getUser(users.getId());
+		if(getLogin != null) {
+			if(getLogin.getPassword().equals(users.getPassword())) {
+				users.setPassword(null);
+				
+				return true;
+			}
+		} else {
+			
+			return false;
+		}	
+
+		
+//		학위과정에서 했던 방법
+//		Users getLogin = dao.login(users);
+//		if(getLogin != null) {
+//			BeanUtils.copyProperties(users, getLogin);
+//			
+//			users.setPassword(null);
+//			
+//			return true;
+//		}
+		
+		return false;
 	}
 
 }
