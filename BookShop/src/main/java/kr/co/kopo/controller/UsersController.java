@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.kopo.model.Users;
 import kr.co.kopo.service.UsersService;
@@ -27,7 +28,7 @@ public class UsersController {
 	UsersService service;
 
 	@GetMapping("/list")
-	String getUsers(Model model) {
+	String getUsers(Model model, @SessionAttribute("user") Users user) {
 		List<Users> users = service.getUsers();
 		model.addAttribute("users",users);
 		return path + "list";

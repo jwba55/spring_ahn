@@ -61,6 +61,9 @@ public class RootController {
 //			이 응답을 쿠키에 저장함.
 //			WAS가 session에 저장해서 응답을 보낼때 세션을 같이 보내주고
 //			클라이언트에서 세션의 값을 쿠키에 저장하고 이를 다음 요청때 사용함.
+//	Session -> SSO -> TOKEN
+	
+//	현재 우리는 하나의 WAS에서 동작한다고 가정하고 Session을 사용함.
 				
 	@PostMapping("/login")
 	String login(Users users, HttpSession session) {	//HttpSession은 서블릿 기술이다. 서블릿에 이런 것들이 들어있다는 것을 알 수 있음.

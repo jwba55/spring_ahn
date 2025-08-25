@@ -45,4 +45,20 @@
 		<!-- 트랜잭션 설정: 트랜잭션을 통해서 여러 테이블을 조인하여 설정했을때 여러 테이블 중 하나에서라도 문제가 생기면 예외 처리: 모든 과정이 성공했을때에만 데이터베이스에 반영 -->
 		<tx:annotation-driven/>
 	
+		<interceptors>
+			<interceptor>
+				<mapping path="/admin/**"/>		<!-- 접근 제한할 주소 -->
+				<mapping path="/book/**" />
+				<mapping path="/users/**" />
+				<mapping path="/orders/**"/>
+				
+				<beans:bean class="kr.co.kopo.interceptor.AdminInterceptor"></beans:bean>	<!-- 어떤걸 실행시킬지 -->
+			</interceptor>
+			<interceptor>		
+				<mapping path="/users/**"/>
+				<mapping path="/orders/**"/>
+				
+				<beans:bean class="kr.co.kopo.interceptor.UsersInterceptor"></beans:bean>	<!-- 어떤걸 실행시킬지 -->
+			</interceptor>
+		</interceptors>
 	</beans:beans>

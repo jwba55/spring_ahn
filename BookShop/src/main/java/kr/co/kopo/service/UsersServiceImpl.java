@@ -63,13 +63,18 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public Boolean login(Users users) {
 		Users getLogin = dao.getUser(users.getId());
-		if(getLogin != null) {
-			if(getLogin.getPassword().equals(users.getPassword())) {
+		
+		if(getLogin != null) {	//아이디 확인
+			if(getLogin.getPassword().equals(users.getPassword())) {	//비밀번호 확인
+				BeanUtils.copyProperties(getLogin, users);
+				
 				users.setPassword(null);
 				
 				return true;
+			}else {		//비밀번호 틀릴 시 
+				return false;
 			}
-		} else {
+		} else {	//아이디가 틀렸을 경우
 			
 			return false;
 		}	
@@ -84,8 +89,6 @@ public class UsersServiceImpl implements UsersService {
 //			
 //			return true;
 //		}
-		
-		return false;
 	}
 
 }
