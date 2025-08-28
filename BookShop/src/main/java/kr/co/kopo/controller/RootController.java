@@ -3,9 +3,12 @@ package kr.co.kopo.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.kopo.model.Users;
 import kr.co.kopo.service.UsersService;
@@ -109,4 +112,17 @@ public class RootController {
 			//문제가 생김
 				//실제 주소가 이전 주소에 머물러 있기 때문에 새로고침시 다시 post 되면서 같은 정보가 여러번 등록되는 문제가 생길수있음.
 	}
+	
+	@ResponseBody	//복잡한 객체는 json타입으로 보내지만 간단한 거는 그냥 값을 보냄
+	@GetMapping("/check_id/{id}")
+	String checkId(@PathVariable String id) {
+		System.out.println(id);
+
+		return "OK";
+	}
+	
+	
+	
+	
+	
 }

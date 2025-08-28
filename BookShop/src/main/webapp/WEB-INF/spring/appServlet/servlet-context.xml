@@ -25,7 +25,10 @@
 		<!-- 
 			resources 태그를 통해서 dispatcher servlet에 등록해서 관리하도록 함.
 		 -->
-		<resources mapping="/resources/static/**" location="/resources/static/" />	<!-- location은 실제 폴더 명이다. mapping은 사용자가 입력하는 경로이다. -->
+		<resources mapping="/resources/**" location="/resources/" />
+		<resources location="/resources/static/js/" mapping="/js/**"></resources>
+		<resources location="/resources/static/images/" mapping="/images/**"></resources>
+		<resources location="/resources/static/css/" mapping="/css/**"></resources>	<!-- location은 실제 폴더 명이다. mapping은 사용자가 입력하는 경로이다. -->
 	
 		<!-- jsp를 읽어들이도록 하는 설정 -->
 		<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

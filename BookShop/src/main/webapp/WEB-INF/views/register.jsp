@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${root}/js/signup.js"></script>
-<script src="${root}/js/inputCheck.js"></script>
+<script src="${root}/js/signup.js" defer></script>
+<script src="${root}/js/inputCheck.js" defer></script>
 </head>
 <body>
 	<div>사용자 등록</div>
@@ -39,10 +39,10 @@
 			그렇지 않을 경우 head에 작성.
 	 -->
 	<div>
-		<form method="post">
+		<form method="post" name="signup_form">
 			<div>
 				<div><label>아이디:</label></div>
-				<div><input type="text" name="id"></div>
+				<div><input type="text" name="id"><button type="button" id="checkId">중복체크</button></div>
 			</div>
 			<div>
 				<div><label>비밀번호:</label></div>
