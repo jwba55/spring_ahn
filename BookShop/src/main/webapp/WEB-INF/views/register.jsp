@@ -42,11 +42,25 @@
 		<form method="post" name="signup_form">
 			<div>
 				<div><label>아이디:</label></div>
-				<div><input type="text" name="id"><button type="button" id="checkId">중복체크</button></div>
+				<div>
+					<input type="text" name="id">
+				</div>
+				<div>
+					<button type="button" id="checkId">[동기]중복체크</button>
+					<button type="button" id="checkIdAsync">[비동기] 중복확인</button>
+					<button type="button" id="checkIdFetch">[fetch] 중복확인</button>
+				</div>
 			</div>
-			<div>
+			<div class="pwd">
 				<div><label>비밀번호:</label></div>
-				<div><input type="text" name="password"></div>
+				<div><input type="password" name="password"></div>
+				<div><button type="button" class="view">확인</button></div>
+			</div>
+				
+			<div class="pwd">
+				<div><label>비밀번호 확인:</label></div>
+				<div><input type="password" name="check_password"></div>
+				<div><button type="button" class="view">확인</button></div>
 			</div>
 			<div>
 				<div><label>성명:</label></div>

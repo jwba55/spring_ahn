@@ -30,7 +30,7 @@ window.addEventListener("load", () => {
         //value 속성으로 값 가져오기
 
             if(signup_form.id.value === "") {
-                alert("이름을 입력하세요.");
+                alert("아이디를 입력하세요.");
                 signup_form.id.focus();
                 return;
             }
