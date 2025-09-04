@@ -4,28 +4,42 @@
     //서버에 요청을 보내고 응답을 받는 동안 다른 작업을 할 수 있음.
     //서버에 요청을 보내고 응답을 받으면 콜백 함수가 호출됨.
 	//ajax의 핵심은 필요한 데이터만 주고 받을 수 있다는 것이다.
+
+let checkIdFlag = false;
+let checkId = '';
+
+function pwdCofirmMouseDown(_that){
+	_that.closest(".pwd").querySelector("input").setAttribute("type","text");
+}
+
+function pwdCofirmMouseUp(_that){
+	_that.closest(".pwd").querySelector("input").setAttribute("type","password");
+}
+
 window.addEventListener("load", () => {
     //이벤트 핸들러는 언제 걸리나?
     //사용자가 버튼을 클릭했을 때
-    document.querySelectorAll(".pwd").forEach(users=> {
-        const input = users.querySelector("input[type=`password`]");
-        const button = users.querySelector(".view");
+    // document.querySelectorAll(".pwd").forEach(users=> {
+    //     const input = users.querySelector("input[type=`password`]");
+    //     const button = users.querySelector(".view");
 
-        button.addEventListener("mousedown", () => {
-            input.setAttribute("type", "text");
-        });
-        button.addEventListener("mouseup", () => {
-            input.setAttribute("type", "password");
-        });
+    //     button.addEventListener("mousedown", () => {
+    //         input.setAttribute("type", "text");
+    //     });
+    //     button.addEventListener("mouseup", () => {
+    //         input.setAttribute("type", "password");
+    //     });
 
-        button.addEventListener("mouseout", () => {
-            input.setAttribute("type", "password");
-        });
-    });
+    //     button.addEventListener("mouseout", () => {
+    //         input.setAttribute("type", "password");
+    //     });
+    // });
+
+
 
     //아이디 중복확인 후 바뀔 경우 다시 중복확인
     document.querySelector("input[name='id']").addEventListener("change", e => {
-        check_id = false;
+        checkIdFlag = false;
     });
 
     //아이디-[fetch] 중복확인
@@ -62,6 +76,11 @@ window.addEventListener("load", () => {
         //dom을 읽으면서 input 태그의 name 속성이 id인 요소를 선택
         //    단점: 오류가 발생할 수 있음.
         const id = document.querySelector("input[name='id']").value;
+
+        if(id === null || id === undefined || id === ""){
+			alert("아이디를 입력하세요");
+			return;
+		}
 
         //서버와 통신할 때 사용하는 객체
         const xhr = new XMLHttpRequest();

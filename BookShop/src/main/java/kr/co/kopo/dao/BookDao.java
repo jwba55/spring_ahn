@@ -1,17 +1,13 @@
-package kr.co.kopo.service;
+package kr.co.kopo.dao;
 
 import java.util.List;
 
 import kr.co.kopo.model.Book;
 import kr.co.kopo.pager.Pager;
 
-public interface BookService {
+public interface BookDao {
 
-	List<Book> list();
-
-	void dummy();
-
-	void init();
+	int getTotal(Pager pager);
 
 	List<Book> getBookList(Pager pager);
 

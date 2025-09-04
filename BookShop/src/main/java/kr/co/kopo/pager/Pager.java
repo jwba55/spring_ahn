@@ -8,10 +8,21 @@ public class Pager {
 	private int page = 1;
 	private int perPage = 10;
 	
+	private int search;
+	private String keyword;
+	
 	//페이지 이동 구현
 	//전체 개수 나누기 페이지그룹을 하면 마지막 페이지를 추출 가능함.
 	private float total;	//나누고 나서의 나머지도 필요하기 때문에 float을 씀.
 	private int perGroup = 5;
+	
+	private int totalPage; // 전체 페이지 수
+    private int startPage; // 현재 블록의 시작 페이지
+    private int endPage; // 현재 블록의 마지막 페이지
+    private boolean prev; // 이전 블록 여부
+    private boolean next; // 다음 블록 여부
+	
+	
 	public int getOffset() {
 		return (page-1) * perPage;
 	}
@@ -39,6 +50,54 @@ public class Pager {
 	public int getLast(){
 		//나눠진 값을 올림해주고 int로 casting해줌.
 		return (int)Math.ceil(total / perPage);
+	}
+	
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
+	public void setPrev(boolean prev) {
+		this.prev = prev;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+	
+	public int getSearch() {
+		return search;
+	}
+
+	public void setSearch(int search) {
+		this.search = search;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 	public int getNext() {
