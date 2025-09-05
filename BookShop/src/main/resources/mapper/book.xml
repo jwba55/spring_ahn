@@ -47,6 +47,11 @@
 	    	SELECT BOOK_SEQ.currval FROM DUAL
 		</selectKey>
     </insert>
+    <!--
+    	transaction으로 현재 등록 정보는 그 정보의 현재 번호를 가지게됨
+    	egov에서는 백엔드에서 아이디젠을 사용하지만 결국 거기서도 시퀀스를 사용한 값을 사용하기 때문에 비효율 적이다.
+    	 
+     -->
     
     <insert id="fileupload" parameterType="Fileupload">
         INSERT INTO fileupload (code, fileName, bookId)

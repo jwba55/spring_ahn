@@ -12,7 +12,7 @@ public interface BookDao {
 
 	List<Book> getBookList(Pager pager);
 
-	int addBook(Book book);
+	void addBook(Book book);
 
 	Book getBook(int bookId);
 

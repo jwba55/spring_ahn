@@ -24,11 +24,10 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public int addBook(Book book) {
+	public void addBook(Book book) {
 		sql.insert("book.addBook", book);
 		int bookid = book.getBookId();
 		log.info("도서번호" + bookid);
-		return bookid;
 	}
 
 	@Override
