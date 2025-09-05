@@ -43,9 +43,9 @@
         INSERT INTO book (bookId
 							,bookName
 							,publisher
-							,price
+							,bookPrice
 							,pub_date)
-        VALUES (#{bookId}, #{bookName}, #{publisher},#{price}, TO_DATE(#{pubDate},'yyyy/MM/dd'))
+        VALUES (#{bookId}, #{bookName}, #{publisher},#{bookPrice}, TO_DATE(#{pubDate},'yyyy/MM/dd'))
     </insert> 
     
     <update id="updateBook" parameterType="Book">
@@ -53,7 +53,7 @@
     	 SET 
     	 	bookName = #{bookName}
 			,publisher = #{publisher}
-			,price = #{price}
+			,bookPrice = #{bookPrice}
 			,pub_date = TO_DATE(#{pubDate},'yyyy/MM/dd')
         WHERE bookId = #{bookId}
     </update>

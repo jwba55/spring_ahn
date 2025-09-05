@@ -21,7 +21,7 @@
 			</div>
 			<div>
 				<div><label>가격:</label></div>
-				<div><input type="text" name="price"></div>
+				<div><input type="text" name="bookPrice"></div>
 			</div>
 			<div>
 				<div><label>출판일:</label></div>

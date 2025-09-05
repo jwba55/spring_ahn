@@ -24,7 +24,7 @@
 			</div>
 			<div>
 				<div><label>가격:</label></div>
-				<div><input type="text" name="price" value="${book.price} "></div>
+				<div><input type="text" name="bookPrice" value="${book.bookPrice} "></div>
 			</div>
 			<div>
 			

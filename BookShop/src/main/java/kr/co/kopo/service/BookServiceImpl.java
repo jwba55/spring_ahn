@@ -57,7 +57,7 @@ public class BookServiceImpl implements BookService {
 		for (int i = 1; i <= 100; i++) {
 			Book book = new Book();
 			book.setBookName("도서명"+i);
-			book.setPrice(1000+i);
+			book.setBookPrice(1000+i);
 			book.setPublisher("출판사"+i);
 			book.setPubDate("2025/09/01");
 			bookDao.addBook(book);
