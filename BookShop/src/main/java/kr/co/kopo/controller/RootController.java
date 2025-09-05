@@ -114,13 +114,11 @@ public class RootController {
 	}
 	
 	@ResponseBody	//복잡한 객체는 json타입으로 보내지만 간단한 거는 그냥 값을 보냄
-	@GetMapping("/check_id/{id}")
+	@GetMapping("/checkId/{id}")
 	String checkId(@PathVariable String id) {
-		System.out.println(id);
-
-		return "OK";
+		Users users = usersService.getUser(id);
+		return users.getId();
 	}
-	
 	
 	
 	

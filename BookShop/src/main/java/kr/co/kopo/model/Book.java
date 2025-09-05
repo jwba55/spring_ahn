@@ -1,5 +1,7 @@
 package kr.co.kopo.model;
 
+import java.util.List;
+
 public class Book {
 	
 	private int bookId;
@@ -7,6 +9,7 @@ public class Book {
 	private String publisher;
 	private int bookPrice;
 	private String pubDate;
+	private List<Fileupload> fileupload;
 	
 	public int getBookId() {
 		return bookId;
@@ -37,5 +40,11 @@ public class Book {
 	}
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
+	}
+	public List<Fileupload> getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(List<Fileupload> fileupload) {
+		this.fileupload = fileupload;
 	}
 }

@@ -29,10 +29,13 @@
 	<!-- 연결할 MODEL 혹은 VO 혹은 DTO추가(각각의 모델마다 패키지명을 생략하여 지정한 명칭으로 해당 모델을 사용할 수 있게 해줌) -->
 	<typeAliases>	<!-- type은 패키지명을 포함한 파일, alias는 해당 파일을 사용할 별칭을 지정 -->
 		<typeAlias type="kr.co.kopo.model.Users" alias="Users"></typeAlias>
+		<typeAlias type="kr.co.kopo.model.Book" alias="Book"></typeAlias>
+		<typeAlias type="kr.co.kopo.model.Fileupload" alias="Fileupload"></typeAlias>
 	</typeAliases>
 	
 	<!-- mapper 파일 추가 -->
 	<mappers>
 		<mapper resource="mapper/users.xml"/>
+		<mapper resource="mapper/book.xml"/>
 	</mappers>
 </configuration>

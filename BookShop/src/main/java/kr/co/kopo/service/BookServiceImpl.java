@@ -1,16 +1,25 @@
 package kr.co.kopo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kopo.dao.BookDao;
 import kr.co.kopo.model.Book;
+import kr.co.kopo.model.Fileupload;
 import kr.co.kopo.pager.Pager;
+import kr.co.kopo.util.FileuploadUtil;
 
 @Service
 public class BookServiceImpl implements BookService {
+	
+	@Autowired
+	FileuploadUtil fileuploadUtil;
 	
 	@Autowired
 	BookDao bookDao;
@@ -31,9 +40,23 @@ public class BookServiceImpl implements BookService {
 		
 	}
 
+	@Transactional
 	@Override
-	public void addBook(Book book) {
-		bookDao.addBook(book);
+	public void addBook(Book book, MultipartFile[] uploadFile, Model model) throws Exception {
+		//도서 정보를 저장하고 키 값 가져오기
+		int bookId = bookDao.addBook(book);
+		
+		for (MultipartFile file: uploadFile) {
+			if(!file.isEmpty()) {
+				Fileupload fileupload = new Fileupload();
+				//모듈화 된 파일 업로드
+				String filename = fileuploadUtil.saveFile(file, model);
+				//파일번호는 시퀀스 사용
+				fileupload.setFileName(filename);
+				fileupload.setBookId(bookId);	//가져온 키 값 사용
+				bookDao.addFileupload(fileupload);
+			}
+		}
 		
 	}
 

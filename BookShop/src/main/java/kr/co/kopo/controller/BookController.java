@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.kopo.model.Book;
+import kr.co.kopo.model.Fileupload;
 import kr.co.kopo.model.Users;
 import kr.co.kopo.pager.Pager;
 import kr.co.kopo.service.BookService;
@@ -53,6 +56,7 @@ public class BookController {
 	@GetMapping("/list")
 	String list(Pager pager, Model model) {
 		List<Book> list =  bookService.getBookList(pager);
+		model.addAttribute("fileList", list);
 		
 		model.addAttribute("bookList",list);
 		model.addAttribute("pager",pager);
@@ -67,8 +71,9 @@ public class BookController {
 	}
 	
 	@PostMapping("/add")
-	String addUser(Book book) {
-		bookService.addBook(book);
+	String addUser(Book book,@RequestParam("files") MultipartFile[] uploadFile, Model model) throws Exception{
+		System.out.println("들어왔는지 확인");
+		bookService.addBook(book, uploadFile, model);
 		
 		return "redirect:list";
 	}

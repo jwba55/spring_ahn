@@ -36,17 +36,22 @@
         where bookId = #{bookId}
     </select>
    
-    <insert id="addBook" parameterType="Book">
-    	<selectKey keyProperty="bookId" resultType="int" order="BEFORE">
-	    	SELECT book_seq.NEXTVAL FROM DUAL
-		</selectKey>
+    <insert id="addBook">
         INSERT INTO book (bookId
 							,bookName
 							,publisher
 							,bookPrice
-							,pub_date)
-        VALUES (#{bookId}, #{bookName}, #{publisher},#{bookPrice}, TO_DATE(#{pubDate},'yyyy/MM/dd'))
-    </insert> 
+							,pubdate)
+        VALUES (BOOK_SEQ.nextval, #{bookName}, #{publisher},#{bookPrice}, TO_DATE(#{pubDate},'yyyy/MM/dd'))
+       	<selectKey keyProperty="bookId" resultType="int" order="AFTER">
+	    	SELECT BOOK_SEQ.currval FROM DUAL
+		</selectKey>
+    </insert>
+    
+    <insert id="fileupload" parameterType="Fileupload">
+        INSERT INTO fileupload (code, fileName, bookId)
+        values (FILEUPLOAD_SEQ.nextval, #{fileName}, #{bookId})
+    </insert>
     
     <update id="updateBook" parameterType="Book">
         UPDATE book
@@ -54,7 +59,7 @@
     	 	bookName = #{bookName}
 			,publisher = #{publisher}
 			,bookPrice = #{bookPrice}
-			,pub_date = TO_DATE(#{pubDate},'yyyy/MM/dd')
+			,pubdate = TO_DATE(#{pubDate},'yyyy/MM/dd')
         WHERE bookId = #{bookId}
     </update>
     

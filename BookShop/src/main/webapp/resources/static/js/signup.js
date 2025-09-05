@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
 
         button.setAttribute("disabled", true);
 
-        fetch(`checkId/${id}`, {
+        fetch("checkId/${id}", {
             method: "GET",
         }).then(resp => {
             button.removeAttribute("disabled");
@@ -85,7 +85,7 @@ window.addEventListener("load", () => {
         //서버와 통신할 때 사용하는 객체
         const xhr = new XMLHttpRequest();
 
-        xhr.open("get", `/check_Id/${id}`, false);    //async가 true면비동기 통신
+        xhr.open("get", `/checkId/${id}`, false);    //async가 true면비동기 통신
 
         xhr.send();
         if(xhr.status === 200 ){
